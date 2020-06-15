@@ -15,7 +15,6 @@
 #ifndef REALSENSE__RS_D435I_HPP_
 #define REALSENSE__RS_D435I_HPP_
 
-#include <vector>
 #include "realsense/rs_d435.hpp"
 
 using IMUInfo = realsense_msgs::msg::IMUInfo;
@@ -27,8 +26,8 @@ class RealSenseD435I : public RealSenseD435
 public:
   RealSenseD435I(rs2::context ctx, rs2::device dev, rclcpp::Node & node);
   virtual ~RealSenseD435I() = default;
-  void publishTopicsCallback(const rs2::frame & frame) override;
-  Result paramChangeCallback(const std::vector<rclcpp::Parameter> & params) override;
+  virtual void publishTopicsCallback(const rs2::frame & frame) override;
+  virtual Result paramChangeCallback(const std::vector<rclcpp::Parameter> & params) override;
   void publishIMUTopic(const rs2::frame & frame, const rclcpp::Time & time);
   IMUInfo getIMUInfo(const rs2::frame & frame, const stream_index_pair & stream_index);
 
@@ -39,5 +38,5 @@ private:
   double angular_velocity_cov_;
   bool initialized_ = false;
 };
-}  // namespace realsense
-#endif   // REALSENSE__RS_D435I_HPP_
+}  // namespace perception
+#endif // REALSENSE__RS_D435I_HPP_

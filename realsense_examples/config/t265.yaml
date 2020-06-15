@@ -1,7 +1,7 @@
 /t265:
   camera:
     ros__parameters:
-      serial_no: 845412111144 # t265
+      serial_no: 905312112031 # t265
       base_frame_id: t265_link
       fisheye1:
         enabled: true

@@ -1,7 +1,7 @@
 /d435:
   camera:
     ros__parameters:
-      serial_no: 819312071869 # d435
+      serial_no: 825312071491 # d435
       base_frame_id: d435_link
       align_depth: true
       enable_pointcloud: true
