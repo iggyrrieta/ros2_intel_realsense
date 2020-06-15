@@ -68,8 +68,6 @@ def generate_launch_description():
         node_namespace="/d435",
         output='screen',
         parameters=[{'serial_no':rgbd_serial_no, 
-                'base_frame_id': rgbd_base_frame_id,
-                'enable_pointcloud':'true',
-                'dense_pointcloud' : 'true'}]
+                'base_frame_id': rgbd_base_frame_id}]
         )
     return launch.LaunchDescription([rviz_node, tf_node, t265_node, rgbd_node])
