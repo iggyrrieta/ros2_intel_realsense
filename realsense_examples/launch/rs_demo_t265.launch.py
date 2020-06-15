@@ -16,9 +16,12 @@
 import os
 import launch
 from launch_ros.actions import Node
+from launch.substitutions import LaunchConfiguration
 from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
+    #Sim
+    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
     rviz_config_dir = os.path.join(get_package_share_directory('realsense_examples'), 'config', 'demo_t265.rviz')
     rviz_node = Node(
         package='rviz2',
@@ -26,7 +29,7 @@ def generate_launch_description():
         node_name='rviz2',
         output = 'screen',
         arguments=['-d', rviz_config_dir],
-        parameters=[{'use_sim_time': 'false'}]
+        parameters=[{'use_sim_time': use_sim_time}]
         )
     t265_node = Node(
         package='realsense_node',
