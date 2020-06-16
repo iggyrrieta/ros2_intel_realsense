@@ -35,6 +35,11 @@ def generate_launch_description():
     d435_base_frame_id = LaunchConfiguration('base_frame_id', default='d435_link')
     d435_serial_no = LaunchConfiguration('serial_no', default='825312071491')
 
+    #Bool variables
+    enable_pointcloud = LaunchConfiguration('enable_pointcloud', default='true')
+    dense_pointcloud = LaunchConfiguration('dense_pointcloud', default='true')
+    init_reset = LaunchConfiguration('init_reset', default='true')
+
     tf_node = Node(
             package='tf2_ros',
             node_executable='static_transform_publisher',
@@ -46,8 +51,10 @@ def generate_launch_description():
         node_executable='realsense_node',
         node_namespace="/d435",
         output='screen',
-        parameters=[{'serial_no':d435_serial_no, 
-                     'base_frame_id': d435_base_frame_id}]
+        parameters=[{'serial_no': d435_serial_no, 
+                     'base_frame_id': d435_base_frame_id,
+                     'enable_pointcloud' : enable_pointcloud,
+                     'dense_pointcloud' : dense_pointcloud}]
         )
     t265_node = Node(
         package='realsense_node',
@@ -55,8 +62,8 @@ def generate_launch_description():
         node_namespace="/t265",
         output='screen',
         remappings=[('/t265/camera/odom/sample','/odom')],
-        parameters=[{'serial_no':t265_serial_no ,
+        parameters=[{'serial_no': t265_serial_no ,
                      'base_frame_id': t265_base_frame_id,
-                     'initial_reset':'true'}]
+                     'initial_reset': init_reset}]
         )
     return launch.LaunchDescription([tf_node, t265_node, d435_node])
