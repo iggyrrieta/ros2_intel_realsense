@@ -91,12 +91,12 @@ void RealSenseNodeFactory::startDevice()
       case RS_T265_PID:
         // INAKI LORENTE : https://github.com/intel/ros2_intel_realsense/compare/refactor...knatsuki:bug_121
         // Resetting hardware is necessary for the t265 device to start properly.
-        //RCLCPP_INFO(this->get_logger(), "Resetting device with serial number %s. Wait for 3 second...",
-        //  dev_.get_info(RS2_CAMERA_INFO_SERIAL_NUMBER));
-        //dev_.hardware_reset();
-        //std::this_thread::sleep_for(std::chrono::seconds(3));
-        //RCLCPP_INFO(this->get_logger(), "Resetting device with serial number %s. Done.",
-        //  dev_.get_info(RS2_CAMERA_INFO_SERIAL_NUMBER));
+        RCLCPP_INFO(this->get_logger(), "Resetting device with serial number %s. Wait for 3 second...",
+          dev_.get_info(RS2_CAMERA_INFO_SERIAL_NUMBER));
+        dev_.hardware_reset();
+        std::this_thread::sleep_for(std::chrono::seconds(3));
+        RCLCPP_INFO(this->get_logger(), "Resetting device with serial number %s. Done.",
+          dev_.get_info(RS2_CAMERA_INFO_SERIAL_NUMBER));
 
         RCLCPP_INFO(this->get_logger(), "Create a node for T265 Camera");
         rs_node_ = std::make_unique<RealSenseT265>(ctx_, dev_, *this);

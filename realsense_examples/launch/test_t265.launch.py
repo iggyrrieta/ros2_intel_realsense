@@ -12,7 +12,7 @@ def generate_launch_description():
     # config SN:
     t265_serial_no = LaunchConfiguration('t265_serial_no', default='905312112031')
     # config T265
-    t265_conf = os.path.join(get_package_share_directory('realsense_examples'), 'config', 't265.yaml')
+    #t265_conf = os.path.join(get_package_share_directory('realsense_examples'), 'config', 't265.yaml')
 
     return LaunchDescription([
 

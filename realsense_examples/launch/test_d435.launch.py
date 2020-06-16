@@ -13,7 +13,7 @@ def generate_launch_description():
     # config SN:
     d435_serial_no = LaunchConfiguration('d435_serial_no', default='825312071491')
     # config D435
-    d435_conf = os.path.join(get_package_share_directory('realsense_examples'), 'config', 'd435.yaml')
+    #d435_conf = os.path.join(get_package_share_directory('realsense_examples'), 'config', 'd435.yaml')
 
     return LaunchDescription([
         Node(
@@ -21,8 +21,8 @@ def generate_launch_description():
             node_executable='realsense_node',
             node_namespace="/d435",
             output='screen',
-            parameters=[d435_conf,{'serial_no': d435_serial_no, 
-                                   'base_frame_id': 'd435_link'}]
+            parameters=[{'serial_no': d435_serial_no, 
+                         'base_frame_id': 'd435_link'}]
             )
     ])
 
