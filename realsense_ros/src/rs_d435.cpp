@@ -22,8 +22,8 @@ RealSenseD435::RealSenseD435(rs2::context ctx, rs2::device dev, rclcpp::Node & n
 : RealSenseBase(ctx, dev, node)
 { 
   // INAKI LORENTE : https://github.com/intel/ros2_intel_realsense/compare/refactor...knatsuki:bug_121
-  auto sn = dev_.get_info(RS2_CAMERA_INFO_SERIAL_NUMBER);
-  cfg_.enable_device(sn);
+  // auto sn = dev_.get_info(RS2_CAMERA_INFO_SERIAL_NUMBER);
+  // cfg_.enable_device(sn);
 
   for (auto & stream : IMAGE_STREAMS) {
     setupStream(stream);
