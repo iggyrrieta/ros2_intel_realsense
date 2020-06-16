@@ -35,7 +35,7 @@ def generate_launch_description():
     resolution = LaunchConfiguration('resolution', default='0.05')
     publish_period_sec = LaunchConfiguration('publish_period_sec', default='1.0')
 
-    rviz_config_dir = os.path.join(get_package_share_directory('realsense_ros'), 'config', 'rs_cartographer.rviz')
+    rviz_config_dir = os.path.join(get_package_share_directory('realsense_examples'), 'config', 'rs_cartographer.rviz')
 
     return LaunchDescription([
         DeclareLaunchArgument(
@@ -52,6 +52,15 @@ def generate_launch_description():
             'use_sim_time',
             default_value='false',
             description='Use simulation (Gazebo) clock if true'),
+
+        Node(
+            package='rviz2',
+            node_executable='rviz2',
+            node_name='rviz2',
+            output = 'screen',
+            arguments=['-d', rviz_config_dir],
+            parameters=[{'use_sim_time': use_sim_time}]
+            ),
 
         Node(
             ## Configure the TF of the robot to the origin of the map coordinates
